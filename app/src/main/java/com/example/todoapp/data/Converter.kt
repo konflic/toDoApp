@@ -14,4 +14,13 @@ class Converter {
     fun toPriority(priority: String): Priority {
         return Priority.valueOf(priority)
     }
+
+    fun fromString(priority: String): Priority {
+        return when (priority) {
+            "High" -> Priority.HIGH
+            "Medium" -> Priority.MEDIUM
+            "Low" -> Priority.LOW
+            else -> Priority.MEDIUM
+        }
+    }
 }

@@ -11,7 +11,7 @@ import com.example.todoapp.data.models.ToDoData
 @TypeConverters(Converter::class)
 abstract class ToDoDatabase : RoomDatabase() {
 
-    abstract fun ToDoDao(): ToDoDao
+    abstract fun toDoDao(): ToDoDao
 
     companion object {
 
