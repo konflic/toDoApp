@@ -51,6 +51,9 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation "androidx.room:room-runtime:$room_version"
 
+    // RecyclerView
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+
     // DataBinding
     kapt "com.android.databinding:compiler:3.2.0-alpha10"
     kapt "androidx.databinding:databinding-common:4.1.2"
