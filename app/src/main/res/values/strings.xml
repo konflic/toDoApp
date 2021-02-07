@@ -13,6 +13,7 @@
     <string name="add">Add</string>
     <string name="save">Save</string>
     <string name="delete">Delete</string>
+    <string name="row_title_text">TextView</string>
     <string-array name="priorities">
         <item>High</item>
         <item>Medium</item>

@@ -11,11 +11,13 @@ import com.example.todoapp.data.Converter
 import com.example.todoapp.data.ToDoViewModel
 import com.example.todoapp.data.models.ToDoData
 import com.example.todoapp.databinding.FragmentAddBinding
+import com.example.todoapp.fragments.SharedViewModel
 
 
 class AddFragment : Fragment() {
 
     private val mToDoViewModel: ToDoViewModel by viewModels()
+    private val mSharedViewModel: SharedViewModel by viewModels()
 
     private var _binding: FragmentAddBinding? = null
     private val binding get() = _binding!!
@@ -24,10 +26,16 @@ class AddFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         // Inflate the layout for this fragment
         _binding = FragmentAddBinding.inflate(layoutInflater, container, false)
+
         // Set menu
         setHasOptionsMenu(true)
+
+        // Add spinner listener
+        binding.newToDoPrioritySpinner.onItemSelectedListener = mSharedViewModel.listener
+
         return binding.root
     }
 
@@ -44,10 +52,10 @@ class AddFragment : Fragment() {
 
     private fun insertDataIntoDb() {
         val mTitle = binding.newToDoTitle.text.toString()
-        val mPriority = binding.newToDoPriority.selectedItem.toString()
+        val mPriority = binding.newToDoPrioritySpinner.selectedItem.toString()
         val mDescription = binding.newToDoDescription.text.toString()
 
-        if (verifyDataFromUser(mTitle, mDescription)) {
+        if (mSharedViewModel.verifyDataFromUser(mTitle, mDescription)) {
             val newData = ToDoData(
                 0,
                 mTitle,
@@ -60,9 +68,5 @@ class AddFragment : Fragment() {
         } else {
             Toast.makeText(requireContext(), "Input is empty!", Toast.LENGTH_SHORT).show()
         }
-    }
-
-    private fun verifyDataFromUser(title: String, description: String): Boolean {
-        return !(title.isEmpty() || description.isEmpty())
     }
 }
